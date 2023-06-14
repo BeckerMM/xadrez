@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
 public class Cavalo extends Peca {
+    public Cavalo(String cor) {
+        super(cor);
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
 

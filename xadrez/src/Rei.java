@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 public class Rei extends Peca{
     private boolean primeiroMovimento;
+
+    public Rei(String cor) {
+        super(cor);
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         Posicao posicaoAtual = this.getPosicao();
@@ -35,7 +40,7 @@ public class Rei extends Peca{
              else if (validaExtremidade(posicaoNoTabuleiro) && !(
                      indice == posicaoNoTabuleiro + 7 ||
                              indice == posicaoNoTabuleiro - 1 ||
-                             indice == posicaoNoTabuleiro - 9 
+                             indice == posicaoNoTabuleiro - 9
              )) {
                  verificaPeca(posicao, possiveisMovimentos);
              }

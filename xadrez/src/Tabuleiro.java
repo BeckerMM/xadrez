@@ -13,43 +13,43 @@ public class Tabuleiro {
                 posicoes.get(i).setPeca(new Peao("Branco"));
             }
             if(i ==0 || i ==7){
-                posicoes.get(0).setPeca(new Torre("Preto"));
+                posicoes.get(i).setPeca(new Torre("Preto"));
 
             }
             if(i ==56 || i ==63){
-                posicoes.get(0).setPeca(new Torre("Branco"));
+                posicoes.get(i).setPeca(new Torre("Branco"));
 
             }
             if(i ==2 || i ==5){
-                posicoes.get(0).setPeca(new Bispo("Preto"));
+                posicoes.get(i).setPeca(new Bispo("Preto"));
 
             }
             if(i ==58 || i ==61){
-                posicoes.get(0).setPeca(new Bispo("Branco"));
+                posicoes.get(i).setPeca(new Bispo("Branco"));
 
             }
             if(i ==1 || i ==6){
-                posicoes.get(0).setPeca(new Cavalo("Preto"));
+                posicoes.get(i).setPeca(new Cavalo("Preto"));
 
             }
             if(i ==57 || i ==62){
-                posicoes.get(0).setPeca(new Cavalo("Branco"));
+                posicoes.get(i).setPeca(new Cavalo("Branco"));
 
             }
             if(i==4){
-                posicoes.get(0).setPeca(new Rei("Preto"));
+                posicoes.get(i).setPeca(new Rei("Preto"));
 
             }
             if(i==60){
-                posicoes.get(0).setPeca(new Rei("Branco"));
+                posicoes.get(i).setPeca(new Rei("Branco"));
 
             }
             if(i==3){
-                posicoes.get(0).setPeca(new Rainha("Preto"));
+                posicoes.get(i).setPeca(new Rainha("Preto"));
 
             }
             if(i==59){
-                posicoes.get(0).setPeca(new Rainha("Branco"));
+                posicoes.get(i).setPeca(new Rainha("Branco"));
 
             }
         }
@@ -66,5 +66,13 @@ public class Tabuleiro {
 
     public void setPosicoes(ArrayList<Posicao> posicoes) {
         this.posicoes = posicoes;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Tabuleiro{" +
+                "posicoes=" + posicoes +
+                '}';
     }
 }

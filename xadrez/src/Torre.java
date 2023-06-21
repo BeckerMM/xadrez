@@ -54,4 +54,11 @@ public class Torre extends Peca {
         }
         return possiveisMovimentos;
     }
+
+    @Override
+    public String toString() {
+        return "Torre{" +
+                "PrimeiroMovimento=" + PrimeiroMovimento +
+                "} " + super.toString();
+    }
 }

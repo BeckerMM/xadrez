@@ -69,4 +69,9 @@ public class Cavalo extends Peca {
 
         return possiveisMovimentos;
     }
+
+    @Override
+    public String toString() {
+        return "Cavalo: "+super.toString();
+    }
 }

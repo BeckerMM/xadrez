@@ -53,4 +53,11 @@ public class Rei extends Peca{
 
         return possiveisMovimentos;
     }
+
+    @Override
+    public String toString() {
+        return "Rei{" +
+                "primeiroMovimento=" + primeiroMovimento +
+                "} " + super.toString();
+    }
 }

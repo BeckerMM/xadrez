@@ -68,4 +68,11 @@ public class Peao extends Peca {
         }
         return posiveisMovimentos;
     }
+
+    @Override
+    public String toString() {
+        return "Peao{" +
+                "primMov=" + primMov +
+                ", " + super.toString();
+    }
 }

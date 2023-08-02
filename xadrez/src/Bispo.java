@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Bispo extends Peca {
 
 
-    public Bispo(String cor) {
-        super(cor);
+    public Bispo(String cor, Posicao posicao) {
+        super(cor, posicao);
     }
 
     @Override
@@ -58,6 +58,11 @@ public class Bispo extends Peca {
 
     @Override
     public String toString() {
-        return "Bispo{} " + super.toString();
+        if (this.getCor().equals("Branco")){
+
+            return "♗";
+        }else {
+            return "♝";
+        }
     }
 }

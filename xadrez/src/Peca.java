@@ -6,8 +6,9 @@ public abstract class Peca {
     private Posicao posicao;
 
 
-    public Peca(String cor){
+    public Peca(String cor, Posicao posicao){
         this.cor=cor;
+        this.posicao= posicao;
     }
 
     public boolean mover(Tabuleiro tabuleiro, Posicao posicao){
@@ -63,7 +64,9 @@ public abstract class Peca {
 
     @Override
     public String toString() {
-        return "cor='" + cor + '\'' +
-                "posicao=" + posicao ;
+        return "Peca{" +
+                "cor='" + cor + '\'' +
+                ", posicao=" + posicao +
+                '}';
     }
 }

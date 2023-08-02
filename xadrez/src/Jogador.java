@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Jogador {
+    static ArrayList<Jogador> listadeJogadores = new ArrayList<Jogador>();
     private String nome;
     private String senha;
     private String cor;
@@ -11,6 +12,11 @@ public class Jogador {
         this.nome = nome;
         this.senha = senha;
         this.pecas = new ArrayList<Peca>();
+        listadeJogadores.add(this);
+    }
+
+    public Jogador() {
+
     }
 
     public void setCor(String cor, Tabuleiro tabuleiro) {
@@ -38,6 +44,18 @@ public class Jogador {
         return valida;
     }
 
+
+    public  Jogador verificarSenha(String nome, String senha){
+        for (Jogador jogador: listadeJogadores) {
+            if (jogador.nome.equals(nome)){
+                if (jogador.senha.equals(senha)){
+                    return jogador;
+                }
+            }
+        }
+        return null;
+    }
+
     public boolean proporEmpate(Jogador jogador) {
         return true;
     }
@@ -45,5 +63,6 @@ public class Jogador {
     public void desistir() {
 
     }
+
 }
 

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Rei extends Peca{
     private boolean primeiroMovimento;
 
-    public Rei(String cor) {
-        super(cor);
+    public Rei(String cor, Posicao posicao) {
+        super(cor, posicao);
     }
 
     @Override
@@ -56,8 +56,12 @@ public class Rei extends Peca{
 
     @Override
     public String toString() {
-        return "Rei{" +
-                "primeiroMovimento=" + primeiroMovimento +
-                "} " + super.toString();
+
+        if (this.getCor().equals("Branco")){
+
+            return "♔";
+        }else {
+            return "♚";
+        }
     }
 }

@@ -55,6 +55,14 @@ public class Torre extends Peca {
         return possiveisMovimentos;
     }
 
+    public boolean isPrimeiroMovimento() {
+        return PrimeiroMovimento;
+    }
+
+    public void setPrimeiroMovimento(boolean primeiroMovimento) {
+        PrimeiroMovimento = primeiroMovimento;
+    }
+
     @Override
     public String toString() {
         if (this.getCor().equals("Branco")){

@@ -14,7 +14,14 @@ public abstract class Peca {
     public boolean mover(Tabuleiro tabuleiro, Posicao posicao){
         ArrayList<Posicao> possiveisPosicoes= possiveisMovimentos(tabuleiro);
         for (Posicao possicaoPossivel: possiveisPosicoes) {
+            System.out.println("possiçãoPossivel : "+possicaoPossivel);
+            System.out.println(posicao);
             if (possicaoPossivel==posicao){
+                if(this instanceof Peao){
+                    ((Peao) this).setPrimMov(false);
+                }else if (this instanceof Torre){
+                    ((Torre)this).setPrimeiroMovimento(false);
+                }
                 //Atribuindo a peça para a nova posição no tabuleiro
                 posicao.setPeca(this);
                 //Removendo a peça da posição anterior

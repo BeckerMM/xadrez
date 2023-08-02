@@ -45,15 +45,17 @@ public class Jogador {
     }
 
 
-    public  Jogador verificarSenha(String nome, String senha){
+    public static Jogador verificarSenha(String nome, String senha){
+        System.out.println(listadeJogadores);
+        Jogador jogadorVer = null;
         for (Jogador jogador: listadeJogadores) {
             if (jogador.nome.equals(nome)){
                 if (jogador.senha.equals(senha)){
-                    return jogador;
+                    jogadorVer = jogador;
                 }
             }
         }
-        return null;
+        return jogadorVer;
     }
 
     public boolean proporEmpate(Jogador jogador) {
@@ -64,5 +66,8 @@ public class Jogador {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
 }
 

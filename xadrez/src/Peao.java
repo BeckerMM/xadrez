@@ -28,7 +28,7 @@ public class Peao extends Peca {
                         posicaoNoTabuleiro + 8
                 ));
             }
-            else if (this.primMov) {
+            if (this.primMov) {
                     if (posicoesTabuleiro.get(posicaoNoTabuleiro + 8).getPeca() == null) {
                         if (posicoesTabuleiro.get(posicaoNoTabuleiro + 16).getPeca() == null) {
                             posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 16));
@@ -41,7 +41,7 @@ public class Peao extends Peca {
                                 !validaExtremidade((posicaoNoTabuleiro + 1))) {
                             posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 9));
                         }
-                    } else if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca() != null) {
+                    }  if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca() != null) {
                         if (posicoesTabuleiro.get(posicaoNoTabuleiro + 7).getPeca().getCor().equals("Branco") &&
                                 !validaExtremidade(posicaoNoTabuleiro)) {
                             posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 7));
@@ -57,7 +57,7 @@ public class Peao extends Peca {
                         posicaoNoTabuleiro - 8
                 ));
             }
-                if (this.primMov) {
+            if (this.primMov) {
                     if (posicoesTabuleiro.get(posicaoNoTabuleiro - 8).getPeca() == null) {
                         if (posicoesTabuleiro.get(posicaoNoTabuleiro - 16).getPeca() == null) {
                             posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 16));
@@ -69,7 +69,8 @@ public class Peao extends Peca {
                  if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca() != null) {
                      if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca().getCor().equals("Preto") && !validaExtremidade(posicaoNoTabuleiro)) {
                          posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 9));
-                     }else if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca() != null) {
+                     }
+                     if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca() != null) {
                          if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca().getCor().equals("Preto") &&
                                  !validaExtremidade((posicaoNoTabuleiro - 1))) {
                              posiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 7));

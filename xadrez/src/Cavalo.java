@@ -26,26 +26,29 @@ public class Cavalo extends Peca {
                     indice == posicaoNoTabuleiro + 17) {
 
                 // Coluna H
-                if (validaExtremidade((posicaoNoTabuleiro + 1))&& !(
-                        indice == posicaoNoTabuleiro - 15 ||
-                                indice == posicaoNoTabuleiro - 6 ||
-                                indice == posicaoNoTabuleiro + 10 ||
-                                indice == posicaoNoTabuleiro + 17
-                )) {
+                if (validaExtremidade((posicaoNoTabuleiro + 1))) {
+                    if (indice == posicaoNoTabuleiro + 15 ||
+                            indice == posicaoNoTabuleiro + 6 ||
+                            indice == posicaoNoTabuleiro - 10 ||
+                            indice == posicaoNoTabuleiro - 17
+                    ) {
                         verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
                 // Coluna A
-                else if (validaExtremidade(posicaoNoTabuleiro) && !(
-                        indice == posicaoNoTabuleiro - 17 ||
-                                indice == posicaoNoTabuleiro - 10 ||
-                                indice == posicaoNoTabuleiro + 6 ||
-                                indice == posicaoNoTabuleiro + 15
-                )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade(posicaoNoTabuleiro)) {
+                    if (
+                            indice == posicaoNoTabuleiro + 17 ||
+                                    indice == posicaoNoTabuleiro + 10 ||
+                                    indice == posicaoNoTabuleiro - 6 ||
+                                    indice == posicaoNoTabuleiro - 15
+                    ) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
 
                 //Coluna B
-                else if (validaExtremidade((posicaoNoTabuleiro-1)) && !(
+                else if (validaExtremidade((posicaoNoTabuleiro - 1)) && (
                         indice == posicaoNoTabuleiro - 10 ||
                                 indice == posicaoNoTabuleiro + 6
                 )) {
@@ -53,14 +56,14 @@ public class Cavalo extends Peca {
                 }
 
                 //Coluna G
-                else if (validaExtremidade((posicaoNoTabuleiro+2)) && !(
+                else if (validaExtremidade((posicaoNoTabuleiro + 2)) && (
                         indice == posicaoNoTabuleiro - 15 ||
                                 indice == posicaoNoTabuleiro + 17
                 )) {
                     verificaPeca(posicao, possiveisMovimentos);
                 }
                 //Não é de canto
-             else{
+                else {
 
                 }
             }
@@ -72,10 +75,10 @@ public class Cavalo extends Peca {
 
     @Override
     public String toString() {
-        if (this.getCor().equals("Branco")){
+        if (this.getCor().equals("Branco")) {
 
             return "♘";
-        }else {
+        } else {
             return "♞";
         }
     }

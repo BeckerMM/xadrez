@@ -22,6 +22,7 @@ public abstract class Peca {
                 }else if (this instanceof Torre){
                     ((Torre)this).setPrimeiroMovimento(false);
                 }
+
                 //Atribuindo a peça para a nova posição no tabuleiro
                 posicao.setPeca(this);
                 //Removendo a peça da posição anterior

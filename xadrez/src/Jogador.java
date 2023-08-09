@@ -45,18 +45,52 @@ public class Jogador {
     }
 
 
-    public static Jogador verificarSenha(String nome, String senha){
+    public static Jogador verificarSenha(String nome, String senha) {
         System.out.println(listadeJogadores);
         Jogador jogadorVer = null;
-        for (Jogador jogador: listadeJogadores) {
-            if (jogador.nome.equals(nome)){
-                if (jogador.senha.equals(senha)){
+        for (Jogador jogador : listadeJogadores) {
+            if (jogador.nome.equals(nome)) {
+                if (jogador.senha.equals(senha)) {
                     jogadorVer = jogador;
                 }
             }
         }
         return jogadorVer;
     }
+//
+//    public ArrayList<Posicao> verificarXeque(Tabuleiro tabuleiro, Jogador adversario) {
+//        for (Posicao posicao : tabuleiro.getPosicoes()) {
+//            for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(tabuleiro)) {
+//                if (pecaVerificar.getPeca() instanceof Rei && verificarPossivelMorteDeQuemDeuXeque( adversario,tabuleiro )) {
+//                    return pecaVerificar.getPeca().possiveisMovimentos(tabuleiro);
+//                }
+//            }
+//        }
+//
+//        return null;
+//    }
+
+// verifique se a peça que deu xeque mate não tem a possíbilidade de morrer, pois assim inibi o xeque
+//    public boolean verificarPossivelMorteDeQuemDeuXeque(Jogador adversario, Tabuleiro tabuleiro) {
+//
+//        for (Peca peca : adversario.getPecas()) {
+//            for (Posicao posicao : peca.possiveisMovimentos(tabuleiro)) {
+//                if (posicao.getPeca() instanceof Rei) {
+//
+//                    for (Peca i : this.getPecas()) {
+//                        for (Posicao posicao1 : i.possiveisMovimentos(tabuleiro)) {
+//                            if (posicao1.getPeca() == peca) {
+//                                return true;
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+//        return false;
+//
+//    }
 
     public boolean proporEmpate(Jogador jogador) {
         return true;

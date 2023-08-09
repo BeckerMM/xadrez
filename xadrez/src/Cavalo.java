@@ -48,22 +48,42 @@ public class Cavalo extends Peca {
                 }
 
                 //Coluna B
-                else if (validaExtremidade((posicaoNoTabuleiro - 1)) && (
-                        indice == posicaoNoTabuleiro - 10 ||
-                                indice == posicaoNoTabuleiro + 6
-                )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade((posicaoNoTabuleiro - 1))) {
+                    if ((indice == posicaoNoTabuleiro - 17 ||
+                            indice == posicaoNoTabuleiro - 15 ||
+                            indice == posicaoNoTabuleiro - 6 ||
+                            indice == posicaoNoTabuleiro + 10 ||
+                            indice == posicaoNoTabuleiro + 17 ||
+                            indice == posicaoNoTabuleiro + 15
+                    )) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
 
                 //Coluna G
-                else if (validaExtremidade((posicaoNoTabuleiro + 2)) && (
-                        indice == posicaoNoTabuleiro - 15 ||
-                                indice == posicaoNoTabuleiro + 17
-                )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade((posicaoNoTabuleiro + 2))) {
+                    if (indice == posicaoNoTabuleiro + 17 ||
+                            indice == posicaoNoTabuleiro + 15 ||
+                            indice == posicaoNoTabuleiro + 6 ||
+                            indice == posicaoNoTabuleiro - 10 ||
+                            indice == posicaoNoTabuleiro - 17 ||
+                            indice == posicaoNoTabuleiro - 15) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
                 //Não é de canto
                 else {
+                    if (indice == posicaoNoTabuleiro + 15 ||
+                            indice == posicaoNoTabuleiro + 6 ||
+                            indice == posicaoNoTabuleiro - 10 ||
+                            indice == posicaoNoTabuleiro - 17 ||
+                            indice == posicaoNoTabuleiro - 15 ||
+                            indice == posicaoNoTabuleiro + 10 ||
+                            indice == posicaoNoTabuleiro - 6 ||
+                            indice == posicaoNoTabuleiro + 17
+                    ) {
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
 
                 }
             }

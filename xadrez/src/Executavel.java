@@ -72,18 +72,31 @@ public class Executavel {
         int escolhaPeca = 0;
         int escolhaPosicao=0;
         do {
+
             System.out.println("\n"+tabuleiro);
             if(cont % 2 == 0){
                 //Rodada do Jogador 1
                 System.out.println("\n----- JOGADOR "+jogadorLogado[0].getNome()+ "-----");
+
                 //Escolha da Peça
                 System.out.println(jogadorLogado[0].getPecas());
-                 escolhaPeca = sc.nextInt();
+                escolhaPeca = sc.nextInt();
                 Peca peca = jogadorLogado[0].getPecas().get(escolhaPeca);
                 System.out.println(peca);
 
+                while (peca.possiveisMovimentos(tabuleiro).size()<=0) {
+                    //Escolha da Peça
+                    System.out.println("Escolha peça novamente \n" + jogadorLogado[0].getPecas());
+                    escolhaPeca = sc.nextInt();
+                    peca = jogadorLogado[0].getPecas().get(escolhaPeca);
+                    System.out.println(peca);
+                }
+
+
+
                 //Escolha da posição para o movimento
                 ArrayList<Posicao> posicoes = peca.possiveisMovimentos(tabuleiro);
+
                 System.out.println(posicoes);
                  escolhaPosicao = sc.nextInt();
                 System.out.println("EscolhaPosicao: "+posicoes.get(escolhaPosicao) );
@@ -94,6 +107,7 @@ public class Executavel {
                 System.out.println(tabuleiro);
                 ganhador = validarVitoria(jogadorLogado[1]);
 
+
             }else{
                 //Rodada do Jogador 2
                 System.out.println("\n----- JOGADOR "+jogadorLogado[1].getNome()+ "-----");
@@ -102,6 +116,16 @@ public class Executavel {
                  escolhaPeca = sc.nextInt();
                 Peca peca = jogadorLogado[1].getPecas().get(escolhaPeca);
                 System.out.println(peca);
+
+                while (peca.possiveisMovimentos(tabuleiro).size()<=0) {
+                    //Escolha da Peça
+                    System.out.println("Escolha peça novamente \n" + jogadorLogado[1].getPecas());
+                    escolhaPeca = sc.nextInt();
+                    peca = jogadorLogado[1].getPecas().get(escolhaPeca);
+                    System.out.println(peca);
+                }
+
+
 
                 //Escolha da posição para o movimento
                 ArrayList<Posicao> posicoes = peca.possiveisMovimentos(tabuleiro);

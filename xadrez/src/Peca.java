@@ -41,6 +41,16 @@ public abstract class Peca {
 
     public abstract ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro);
 
+    public void removerMovimentoDoRei(Posicao posicao,Tabuleiro tabuleiro){
+        ArrayList<Posicao> possiveisMovimentos = possiveisMovimentos(tabuleiro);
+        for (Posicao i : possiveisMovimentos) {
+            if (i == posicao){
+                possiveisMovimentos.remove(posicao);
+            }
+        }
+
+    }
+
     public Posicao getPosicao() {
         return posicao;
     }

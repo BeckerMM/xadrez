@@ -10,17 +10,17 @@ public class Rei extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
 
         Posicao posicaoAtual = this.getPosicao();
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+                poTabuleiro.indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<Posicao>();
 
         for (Posicao posicao :
-                tabuleiro.getPosicoes()) {
+                poTabuleiro) {
             int indice =
-                    tabuleiro.getPosicoes().indexOf(posicao);
+                    poTabuleiro.indexOf(posicao);
 
             if (indice == posicaoNoTabuleiro - 9 ||
                     indice == posicaoNoTabuleiro - 8 ||
@@ -37,7 +37,7 @@ public class Rei extends Peca {
                                 indice == posicaoNoTabuleiro + 1 ||
                                 indice == posicaoNoTabuleiro + 9
                 )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                    verificaPeca(posicao, possiveisMovimentos , poTabuleiro);
                 }
                 // Coluna A
                 else if (validaExtremidade(posicaoNoTabuleiro) && (
@@ -45,9 +45,9 @@ public class Rei extends Peca {
                                 indice == posicaoNoTabuleiro - 1 ||
                                 indice == posicaoNoTabuleiro - 9
                 )) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                    verificaPeca(posicao, possiveisMovimentos,poTabuleiro);
                 } else {
-                    verificaPeca(posicao, possiveisMovimentos);
+                    verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
                 }
 
             }

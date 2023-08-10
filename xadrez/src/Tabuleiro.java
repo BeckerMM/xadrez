@@ -96,6 +96,21 @@ public class Tabuleiro {
         return tabuleiro.toString();
     }
 
+    public static boolean verificarXeque(ArrayList<Posicao> poTabuleiro) {
+        for (Posicao posicao : poTabuleiro) {
+            if (posicao!=null && posicao.getPeca()!=null) {
+                if (posicao.getPeca().getCor()!= posicao.getPeca().getCor()) {
+                    for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
+                        if (pecaVerificar.getPeca() instanceof Rei) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
     @Override
     public String toString() {
         return tabuleiroImpresso();

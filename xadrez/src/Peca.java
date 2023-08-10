@@ -11,9 +11,9 @@ public abstract class Peca {
         this.posicao= posicao;
     }
 
-    public boolean mover(Tabuleiro tabuleiro, Posicao posicao){
-        ArrayList<Posicao> possiveisPosicoes= possiveisMovimentos(tabuleiro);
-        for (Posicao possicaoPossivel: possiveisPosicoes) {
+    public boolean mover( Posicao posicao, ArrayList<Posicao>possiveisMovimentos){
+
+        for (Posicao possicaoPossivel: possiveisMovimentos) {
             System.out.println("possiçãoPossivel : "+possicaoPossivel);
             System.out.println(posicao);
             if (possicaoPossivel==posicao){
@@ -40,10 +40,11 @@ public abstract class Peca {
         return  posicaoNoTabuleiro % 8 == 0;
     }
 
-    public abstract ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro);
+    public abstract ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro);
 
-    public void removerMovimentoDoRei(Posicao posicao,Tabuleiro tabuleiro){
-        ArrayList<Posicao> possiveisMovimentos = possiveisMovimentos(tabuleiro);
+
+    public void removerMovimentoDoRei(Posicao posicao,ArrayList<Posicao> poTabuleiro ,Jogador jogador, Jogador adversario){
+        ArrayList<Posicao> possiveisMovimentos = possiveisMovimentos(poTabuleiro );
         for (Posicao i : possiveisMovimentos) {
             if (i == posicao){
                 possiveisMovimentos.remove(posicao);
@@ -60,24 +61,40 @@ public abstract class Peca {
         return cor;
     }
 
-    public boolean verificaPeca(Posicao posicao,
-                       ArrayList<Posicao> possiveisMovimentos) {
+    public boolean verificaPeca(Posicao posicao, ArrayList<Posicao> possiveisMovimentos, ArrayList<Posicao> poTabuleiro) {
 
-        if (posicao.getPeca()==null){
-            possiveisMovimentos.add(posicao);
-            return false;
-        }else{
-            if (!posicao.getPeca().getCor().equals(this.getCor())){
+        if (simularJogada(posicao, possiveisMovimentos, poTabuleiro)) {
+            if (posicao.getPeca() == null) {
                 possiveisMovimentos.add(posicao);
+                return false;
+            } else {
+                if (!posicao.getPeca().getCor().equals(this.getCor())) {
+                    possiveisMovimentos.add(posicao);
+                }
+                return true;
+
             }
-            return true;
-
+        }else {
+            return false;
         }
-
-
-
     }
-    //public abstract char icone();
+
+    private boolean simularJogada (Posicao posicao, ArrayList<Posicao> possiveisMovimentos,ArrayList<Posicao> poTabuleiro){
+        Peca pecaAntiga = posicao.getPeca();
+
+
+        this.mover( posicao,  possiveisMovimentos);
+        if(Tabuleiro.verificarXeque(poTabuleiro)){
+           this.mover(posicao, possiveisMovimentos);
+            posicao.setPeca(pecaAntiga);
+           return false;
+        }else{
+            this.mover(posicao, possiveisMovimentos);
+            posicao.setPeca(pecaAntiga);
+            return true;
+        }
+    }
+
 
 
     @Override

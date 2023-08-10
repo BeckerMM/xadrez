@@ -34,10 +34,10 @@ public class Jogador {
         return pecas;
     }
 
-    public boolean moverPeca(Peca peca, Posicao posicao, Tabuleiro tabuleiro, Jogador adversario) {
-
+    public boolean moverPeca(Peca peca, Posicao posicao, Tabuleiro tabuleiro,Jogador jogador, Jogador adversario) {
+        ArrayList<Posicao> possiveisMovimentos = peca.possiveisMovimentos(tabuleiro.getPosicoes());
         Peca pecaAdversaria = posicao.getPeca();
-        boolean valida = peca.mover(tabuleiro, posicao);
+        boolean valida = peca.mover( posicao, possiveisMovimentos);
         if (posicao.getPeca() != null && valida) {
             adversario.pecas.remove(pecaAdversaria);
         }
@@ -58,17 +58,7 @@ public class Jogador {
         return jogadorVer;
     }
 //
-//    public ArrayList<Posicao> verificarXeque(Tabuleiro tabuleiro, Jogador adversario) {
-//        for (Posicao posicao : tabuleiro.getPosicoes()) {
-//            for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(tabuleiro)) {
-//                if (pecaVerificar.getPeca() instanceof Rei && verificarPossivelMorteDeQuemDeuXeque( adversario,tabuleiro )) {
-//                    return pecaVerificar.getPeca().possiveisMovimentos(tabuleiro);
-//                }
-//            }
-//        }
 //
-//        return null;
-//    }
 
 // verifique se a peça que deu xeque mate não tem a possíbilidade de morrer, pois assim inibi o xeque
 //    public boolean verificarPossivelMorteDeQuemDeuXeque(Jogador adversario, Tabuleiro tabuleiro) {
@@ -98,6 +88,10 @@ public class Jogador {
 
     public void desistir() {
 
+    }
+
+    public String getCor() {
+        return cor;
     }
 
     public String getNome() {

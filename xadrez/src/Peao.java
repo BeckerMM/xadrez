@@ -11,12 +11,12 @@ public class Peao extends Peca {
 
     @Override
     public ArrayList<Posicao>
-    possiveisMovimentos(Tabuleiro tabuleiro) {
+    possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
 
         ArrayList<Posicao> posiveisMovimentos = new ArrayList<>();
         Posicao posicaoAtual = this.getPosicao();
-        int posicaoNoTabuleiro = tabuleiro.getPosicoes().indexOf(posicaoAtual);
-        ArrayList<Posicao> posicoesTabuleiro = tabuleiro.getPosicoes();
+        int posicaoNoTabuleiro = poTabuleiro.indexOf(posicaoAtual);
+        ArrayList<Posicao> posicoesTabuleiro = poTabuleiro ;
 
         if (this.getCor().equals("Preto")) {
 
@@ -84,7 +84,6 @@ public class Peao extends Peca {
 
         return posiveisMovimentos;
     }
-
     public boolean isPrimMov() {
         return primMov;
     }

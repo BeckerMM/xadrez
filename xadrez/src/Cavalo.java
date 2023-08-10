@@ -6,17 +6,17 @@ public class Cavalo extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
 
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<Posicao>();
 
         Posicao posicaoAtual = this.getPosicao();
         int posicaoNoTabuleiro =
-                tabuleiro.getPosicoes().indexOf(posicaoAtual);
+               poTabuleiro.indexOf(posicaoAtual);
 
-        for (Posicao posicao : tabuleiro.getPosicoes()) {
-            int indice = tabuleiro.getPosicoes().indexOf(posicao);
-            if (tabuleiro.getPosicoes().indexOf(posicao) == posicaoNoTabuleiro - 17 ||
+        for (Posicao posicao : poTabuleiro) {
+            int indice = poTabuleiro.indexOf(posicao);
+            if (poTabuleiro.indexOf(posicao) == posicaoNoTabuleiro - 17 ||
                     indice == posicaoNoTabuleiro - 15 ||
                     indice == posicaoNoTabuleiro - 10 ||
                     indice == posicaoNoTabuleiro - 6 ||
@@ -32,7 +32,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 10 ||
                             indice == posicaoNoTabuleiro - 17
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
                     }
                 }
                 // Coluna A
@@ -43,7 +43,7 @@ public class Cavalo extends Peca {
                                     indice == posicaoNoTabuleiro - 6 ||
                                     indice == posicaoNoTabuleiro - 15
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
                     }
                 }
 
@@ -56,7 +56,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro + 17 ||
                             indice == posicaoNoTabuleiro + 15
                     )) {
-                        verificaPeca(posicao, possiveisMovimentos);
+                        verificaPeca(posicao, possiveisMovimentos,poTabuleiro);
                     }
                 }
 
@@ -68,7 +68,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 10 ||
                             indice == posicaoNoTabuleiro - 17 ||
                             indice == posicaoNoTabuleiro - 15) {
-                        verificaPeca(posicao, possiveisMovimentos);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
                     }
                 }
                 //Não é de canto
@@ -82,7 +82,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 6 ||
                             indice == posicaoNoTabuleiro + 17
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos);
+                        verificaPeca(posicao, possiveisMovimentos, poTabuleiro);
                     }
 
                 }

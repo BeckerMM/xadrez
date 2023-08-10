@@ -12,7 +12,6 @@ public class Executavel {
             decisao = menuDeCadastro();
 
         } while (decisao != 1);
-
     }
 
     private static int menuDeCadastro() {
@@ -35,7 +34,6 @@ public class Executavel {
                 break;
             case 3:
                 return 1;
-
             default:
                 System.out.println("Número inválido!");
         }
@@ -87,7 +85,7 @@ public class Executavel {
         while (!ganhador);
     }
 
-    private static boolean jogada(Jogador jogador, Jogador jogadorAdversario, Tabuleiro tabuleiro) {
+    private static boolean jogada(Jogador jogador, Jogador adversario, Tabuleiro tabuleiro) {
 
 
         int escolhaPeca = 0;
@@ -101,7 +99,7 @@ public class Executavel {
         Peca peca = jogador.getPecas().get(escolhaPeca);
         System.out.println(peca);
 
-        while (peca.possiveisMovimentos(tabuleiro).size() <= 0) {
+        while (peca.possiveisMovimentos(tabuleiro.getPosicoes()).size() <= 0) {
             //Escolha da Peça
             System.out.println("Escolha peça novamente \n" + jogador.getPecas());
             escolhaPeca = sc.nextInt();
@@ -112,10 +110,10 @@ public class Executavel {
         ArrayList<Posicao> posicoes = new ArrayList<>();
         if (peca instanceof Rei) {
             //Escolha da posição para o movimento
-            ((Rei) peca).setPosicaoReiNao(verificarmovimentosNaoRei(tabuleiro, peca));
-            posicoes = peca.possiveisMovimentos(tabuleiro);
+            ((Rei) peca).setPosicaoReiNao(verificarmovimentosNaoRei(tabuleiro.getPosicoes(), peca,jogador,adversario));
+            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes());
         } else {
-            posicoes = peca.possiveisMovimentos(tabuleiro);
+            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes());
         }
         System.out.println(posicoes);
         escolhaPosicao = sc.nextInt();
@@ -123,9 +121,9 @@ public class Executavel {
         Posicao posicao = posicoes.get(escolhaPosicao);
 
         //Movimentação da peça escolhida para a posição desejada
-        jogador.moverPeca(peca, posicao, tabuleiro, jogadorAdversario);
+        jogador.moverPeca(peca, posicao, tabuleiro,jogador, adversario);
         System.out.println(tabuleiro);
-        return validarVitoria(jogadorAdversario);
+        return validarVitoria(adversario);
     }
 
 
@@ -185,18 +183,17 @@ public class Executavel {
     }
 
 
-    public static ArrayList<Posicao> verificarmovimentosNaoRei(Tabuleiro tabuleiro, Peca rei) {
+    public static ArrayList<Posicao> verificarmovimentosNaoRei(ArrayList<Posicao> poTabuleiro, Peca rei ,Jogador jogador, Jogador adversario) {
 
         ArrayList<Posicao> posicoesReiNao = new ArrayList<>();
-        for (Posicao posicao : tabuleiro.getPosicoes()) {
+        for (Posicao posicao : poTabuleiro) {
             if (posicao.getPeca() != null) {
                 if (rei.getCor().equals("Branco")) {
 
                     if (posicao.getPeca().getCor().equals("Preto")) {
-                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(tabuleiro)) {
-                            for (Posicao movRei : rei.possiveisMovimentos(tabuleiro)) {
+                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
+                            for (Posicao movRei : rei.possiveisMovimentos(poTabuleiro)) {
                                 if (movRei == possiveis) {
-                                    ;
 
                                     posicoesReiNao.add(possiveis);
                                 }
@@ -207,7 +204,7 @@ public class Executavel {
                     // terminar está parte
                     if (posicao.getPeca().getCor().equals("Branco")) {
 
-                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(tabuleiro)) {
+                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
                             if (possiveis.getPeca() instanceof Rei) {
 
                                 posicoesReiNao.add(possiveis);
@@ -234,15 +231,6 @@ public class Executavel {
     }
 
 
-    private static boolean xeque(Jogador jogadorAdversario, Tabuleiro tabuleiro) {
-        for (Peca peca : jogadorAdversario.getPecas()) {
-            for (Posicao posicao : peca.possiveisMovimentos(tabuleiro)) {
-                if (posicao.getPeca() instanceof Rei) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
 
 }

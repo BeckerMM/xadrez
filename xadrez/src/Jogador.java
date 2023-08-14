@@ -35,7 +35,7 @@ public class Jogador {
     }
 
     public boolean moverPeca(Peca peca, Posicao posicao, Tabuleiro tabuleiro,Jogador jogador, Jogador adversario) {
-        ArrayList<Posicao> possiveisMovimentos = peca.possiveisMovimentos(tabuleiro.getPosicoes());
+        ArrayList<Posicao> possiveisMovimentos = peca.possiveisMovimentos(tabuleiro.getPosicoes(),true );
         Peca pecaAdversaria = posicao.getPeca();
         boolean valida = peca.mover( posicao, possiveisMovimentos);
         if (posicao.getPeca() != null && valida) {

@@ -8,7 +8,7 @@ public class Torre extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
         Posicao posicaoAtual = this.getPosicao();
 
         int posicaoTabuleiro = poTabuleiro.indexOf(posicaoAtual);
@@ -17,20 +17,20 @@ public class Torre extends Peca {
 
         for (int i = posicaoTabuleiro+8; i < poTabuleiro.size(); i += 8) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro)) {
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular )) {
                 break;
             }
         }
 
         for (int i = posicaoTabuleiro-8; i >= 0; i -= 8) {
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro)) {
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular)) {
                 break;
             }
         }
 
         for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 1); i < poTabuleiro.size(); i ++) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro)||validaExtremidade(i+1)){
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular)||validaExtremidade(i+1)){
                 break;
             }
         }
@@ -38,10 +38,10 @@ public class Torre extends Peca {
         for (int i = (validaExtremidade(posicaoTabuleiro) ? -1 : posicaoTabuleiro - 1); i >= 0; i --) {
             Posicao posicao = poTabuleiro.get(i);
 
-            this.verificaPeca(posicao, possiveisMovimentos, poTabuleiro);
+            this.verificaPeca(posicao, possiveisMovimentos, poTabuleiro, simular);
 
             if (validaExtremidade(i)||
-                    verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro)) {
+                    verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular)) {
                 break;
             }
 

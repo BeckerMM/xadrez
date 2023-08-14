@@ -6,7 +6,7 @@ public class Cavalo extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
 
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<Posicao>();
 
@@ -32,7 +32,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 10 ||
                             indice == posicaoNoTabuleiro - 17
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro,simular );
                     }
                 }
                 // Coluna A
@@ -43,7 +43,7 @@ public class Cavalo extends Peca {
                                     indice == posicaoNoTabuleiro - 6 ||
                                     indice == posicaoNoTabuleiro - 15
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro,simular );
                     }
                 }
 
@@ -56,7 +56,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro + 17 ||
                             indice == posicaoNoTabuleiro + 15
                     )) {
-                        verificaPeca(posicao, possiveisMovimentos,poTabuleiro);
+                        verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular);
                     }
                 }
 
@@ -68,7 +68,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 10 ||
                             indice == posicaoNoTabuleiro - 17 ||
                             indice == posicaoNoTabuleiro - 15) {
-                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
+                        verificaPeca(posicao, possiveisMovimentos,  poTabuleiro, simular);
                     }
                 }
                 //Não é de canto
@@ -82,7 +82,7 @@ public class Cavalo extends Peca {
                             indice == posicaoNoTabuleiro - 6 ||
                             indice == posicaoNoTabuleiro + 17
                     ) {
-                        verificaPeca(posicao, possiveisMovimentos, poTabuleiro);
+                        verificaPeca(posicao, possiveisMovimentos, poTabuleiro, simular);
                     }
 
                 }

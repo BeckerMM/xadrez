@@ -99,7 +99,7 @@ public class Executavel {
         Peca peca = jogador.getPecas().get(escolhaPeca);
         System.out.println(peca);
 
-        while (peca.possiveisMovimentos(tabuleiro.getPosicoes()).size() <= 0) {
+        while (peca.possiveisMovimentos(tabuleiro.getPosicoes(), true ).size() <= 0) {
             //Escolha da Peça
             System.out.println("Escolha peça novamente \n" + jogador.getPecas());
             escolhaPeca = sc.nextInt();
@@ -110,10 +110,10 @@ public class Executavel {
         ArrayList<Posicao> posicoes = new ArrayList<>();
         if (peca instanceof Rei) {
             //Escolha da posição para o movimento
-            ((Rei) peca).setPosicaoReiNao(verificarmovimentosNaoRei(tabuleiro.getPosicoes(), peca,jogador,adversario));
-            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes());
+//            ((Rei) peca).setPosicaoReiNao(verificarmovimentosNaoRei(tabuleiro.getPosicoes(), peca,jogador,adversario));
+            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes(),true );
         } else {
-            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes());
+            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes(), true);
         }
         System.out.println(posicoes);
         escolhaPosicao = sc.nextInt();
@@ -182,40 +182,40 @@ public class Executavel {
         return true;
     }
 
-
-    public static ArrayList<Posicao> verificarmovimentosNaoRei(ArrayList<Posicao> poTabuleiro, Peca rei ,Jogador jogador, Jogador adversario) {
-
-        ArrayList<Posicao> posicoesReiNao = new ArrayList<>();
-        for (Posicao posicao : poTabuleiro) {
-            if (posicao.getPeca() != null) {
-                if (rei.getCor().equals("Branco")) {
-
-                    if (posicao.getPeca().getCor().equals("Preto")) {
-                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
-                            for (Posicao movRei : rei.possiveisMovimentos(poTabuleiro)) {
-                                if (movRei == possiveis) {
-
-                                    posicoesReiNao.add(possiveis);
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    // terminar está parte
-                    if (posicao.getPeca().getCor().equals("Branco")) {
-
-                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
-                            if (possiveis.getPeca() instanceof Rei) {
-
-                                posicoesReiNao.add(possiveis);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return posicoesReiNao;
-    }
+//
+//    public static ArrayList<Posicao> verificarmovimentosNaoRei(ArrayList<Posicao> poTabuleiro, Peca rei ,Jogador jogador, Jogador adversario) {
+//
+//        ArrayList<Posicao> posicoesReiNao = new ArrayList<>();
+//        for (Posicao posicao : poTabuleiro) {
+//            if (posicao.getPeca() != null) {
+//                if (rei.getCor().equals("Branco")) {
+//
+//                    if (posicao.getPeca().getCor().equals("Preto")) {
+//                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
+//                            for (Posicao movRei : rei.possiveisMovimentos(poTabuleiro)) {
+//                                if (movRei == possiveis) {
+//
+//                                    posicoesReiNao.add(possiveis);
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    // terminar está parte
+//                    if (posicao.getPeca().getCor().equals("Branco")) {
+//
+//                        for (Posicao possiveis : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
+//                            if (possiveis.getPeca() instanceof Rei) {
+//
+//                                posicoesReiNao.add(possiveis);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return posicoesReiNao;
+//    }
 
     public static ArrayList<Peca> pecasPermitidasParaJogoEmXeque(Jogador jogador, ArrayList<Posicao> movimentosReiNao) {
         ArrayList<Peca> pecasPossui = new ArrayList<>();

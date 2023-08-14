@@ -11,7 +11,7 @@ public class Peao extends Peca {
 
     @Override
     public ArrayList<Posicao>
-    possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
 
         ArrayList<Posicao> posiveisMovimentos = new ArrayList<>();
         Posicao posicaoAtual = this.getPosicao();

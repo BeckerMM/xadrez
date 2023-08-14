@@ -16,11 +16,11 @@ public class Tabuleiro {
 //                posicoes.get(i).setPeca(new Peao("Branco",posicoes.get(i)));
 //
 //            }
-//            if(i ==0 || i ==7){
-//                posicoes.get(i).setPeca(new Torre("Preto",posicoes.get(i)));
-//
-//
-//            }
+            if(i ==0 || i ==7){
+                posicoes.get(i).setPeca(new Torre("Preto",posicoes.get(i)));
+
+
+            }
 //            if(i ==56 || i ==63){
 //                posicoes.get(i).setPeca(new Torre("Branco",posicoes.get(i)));
 //
@@ -31,15 +31,15 @@ public class Tabuleiro {
 //
 //
 //            }
-//            if(i ==58 || i ==61){
-//                posicoes.get(i).setPeca(new Bispo("Branco",posicoes.get(i)));
-//
-//
-//            }
-//            if(i ==1 || i ==6){
-//                posicoes.get(i).setPeca(new Cavalo("Preto",posicoes.get(i)));
-//
-//            }
+            if(i ==58 || i ==61){
+                posicoes.get(i).setPeca(new Bispo("Branco",posicoes.get(i)));
+
+
+            }
+            if(i ==1 || i ==6){
+                posicoes.get(i).setPeca(new Cavalo("Preto",posicoes.get(i)));
+
+            }
 //            if(i ==57 || i ==62){
 //                posicoes.get(i).setPeca(new Cavalo("Branco",posicoes.get(i)));
 //
@@ -96,11 +96,11 @@ public class Tabuleiro {
         return tabuleiro.toString();
     }
 
-    public static boolean verificarXeque(ArrayList<Posicao> poTabuleiro) {
+    public static boolean verificarXeque(ArrayList<Posicao> poTabuleiro, Peca peca) {
         for (Posicao posicao : poTabuleiro) {
             if (posicao!=null && posicao.getPeca()!=null) {
-                if (posicao.getPeca().getCor()!= posicao.getPeca().getCor()) {
-                    for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(poTabuleiro)) {
+                if (posicao.getPeca().getCor()!= peca.getCor()) {
+                    for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(poTabuleiro,false )) {
                         if (pecaVerificar.getPeca() instanceof Rei) {
                             return true;
                         }
@@ -108,7 +108,6 @@ public class Tabuleiro {
                 }
             }
         }
-
         return false;
     }
     @Override

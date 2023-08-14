@@ -6,76 +6,86 @@ public class Rainha extends Peca{
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
+        Posicao posicaoAtual = this.getPosicao();
 
-        int posicaoNoTabuleiro =poTabuleiro.indexOf(this.getPosicao());
-        ArrayList<Posicao> possiveisMovimentos = new ArrayList<Posicao>();
+        int posicaoTabuleiro = poTabuleiro.indexOf(posicaoAtual);
 
-        for (int i = (validaExtremidade(posicaoNoTabuleiro)
-                ? 64 : posicaoNoTabuleiro + 7); i < poTabuleiro.size(); i += 7) {
+        ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
+        for (int i = (validaExtremidade(posicaoTabuleiro) ? 64 : posicaoTabuleiro + 7); i <poTabuleiro.size(); i += 7) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro) ||
-                    validaExtremidade(i)) {
+            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular );
+
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular) || validaExtremidade(i)) {
                 break;
             }
         }
 
-        for (int i = (validaExtremidade((posicaoNoTabuleiro + 1)) ? -1 : posicaoNoTabuleiro - 7); i >= 0; i -= 7) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1) ? 7 : posicaoTabuleiro - 7); i > 7; i -= 7) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
-                    validaExtremidade(i + 1)) {
+            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular);
+
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i+1)) {
                 break;
             }
         }
 
-        for (int i = (validaExtremidade((posicaoNoTabuleiro + 1)) ? 64 : posicaoNoTabuleiro + 9); i < poTabuleiro.size(); i += 9) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 9); i <poTabuleiro.size(); i += 9) {
 
-            if (verificaPeca(possiveisMovimentos.get(i), possiveisMovimentos, poTabuleiro) ||
-                    validaExtremidade((i + 1))) {
+            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular);
+
+            if (poTabuleiro.get(i).getPeca() == null) {
+                possiveisMovimentos.add(poTabuleiro.get(i));
+            }
+
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i+1)) {
                 break;
             }
         }
 
-        for (int i = (validaExtremidade(posicaoNoTabuleiro) ? -1 : posicaoNoTabuleiro - 9); i >= 0; i -= 9) {
+        for (int i = (validaExtremidade(posicaoTabuleiro) ? 9 : posicaoTabuleiro - 9); i > 9; i -= 9) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
-                    validaExtremidade(i)) {
+            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular);
+
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i)) {
+                break;
+            }
+
+        }
+
+        for (int i = posicaoTabuleiro+8; i < poTabuleiro.size(); i += 8) {
+
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular )) {
                 break;
             }
         }
 
-        for (int i = posicaoNoTabuleiro + 8; i < poTabuleiro.size(); i += 8) {
-
-
-            if (verificaPeca(poTabuleiro.get(i),
-                    possiveisMovimentos,  poTabuleiro)) {
+        for (int i = posicaoTabuleiro-8; i >= 0; i -= 8) {
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular )) {
                 break;
             }
         }
 
-        for (int i = posicaoNoTabuleiro - 8; i >= 0; i -= 8) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 1); i < poTabuleiro.size(); i ++) {
 
-            if (verificaPeca(poTabuleiro.get(i),
-                    possiveisMovimentos,  poTabuleiro)) {
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular)||validaExtremidade(i+1)){
                 break;
             }
         }
 
-        for (int i = (validaExtremidade((posicaoNoTabuleiro + 1)) ? 64 : posicaoNoTabuleiro + 1); i < poTabuleiro.size(); i++) {
+        for (int i = (validaExtremidade(posicaoTabuleiro) ? -1 : posicaoTabuleiro - 1); i >= 0; i --) {
+            Posicao posicao = poTabuleiro.get(i);
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,  poTabuleiro) || validaExtremidade((i + 1))) {
+            this.verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular);
+
+            if (validaExtremidade(i)||
+                    verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular)) {
                 break;
             }
+
         }
 
-        //
-        for (int i = (validaExtremidade(posicaoNoTabuleiro) ? -1 : posicaoNoTabuleiro - 1); i >= 0; i--) {
-
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,  poTabuleiro) || validaExtremidade(i)) {
-                break;
-            }
-        }
         return possiveisMovimentos;
 
     }

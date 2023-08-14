@@ -8,7 +8,7 @@ public class Bispo extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
         Posicao posicaoAtual = this.getPosicao();
         int posicaoNoTabuleiro =poTabuleiro.indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<Posicao>();
@@ -19,7 +19,7 @@ public class Bispo extends Peca {
              i += 7) {
 
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro,simular ) ||
                     validaExtremidade(i)) {
                 break;
             }
@@ -29,7 +29,7 @@ public class Bispo extends Peca {
              ; i >= 0;
              i -= 7) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular) ||
                     validaExtremidade(i + 1)) {
                 break;
             }
@@ -39,7 +39,7 @@ public class Bispo extends Peca {
              ; i <poTabuleiro.size();
              i += 9) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular) ||
                     validaExtremidade((i + 1))) {
                 break;
             }
@@ -48,7 +48,7 @@ public class Bispo extends Peca {
              ; i >= 0;
              i -= 9) {
 
-            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro) ||
+            if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos, poTabuleiro, simular) ||
                     validaExtremidade(i)) {
                 break;
             }

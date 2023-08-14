@@ -10,7 +10,7 @@ public class Rei extends Peca {
     }
 
     @Override
-    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro) {
+    public ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular) {
 
         Posicao posicaoAtual = this.getPosicao();
         int posicaoNoTabuleiro =
@@ -32,43 +32,46 @@ public class Rei extends Peca {
                     indice == posicaoNoTabuleiro + 9) {
 
                 // Coluna H
-                if (validaExtremidade((posicaoNoTabuleiro + 1)) && (
-                        indice == posicaoNoTabuleiro - 7 ||
-                                indice == posicaoNoTabuleiro + 1 ||
-                                indice == posicaoNoTabuleiro + 9
-                )) {
-                    verificaPeca(posicao, possiveisMovimentos , poTabuleiro);
-                }
-                // Coluna A
-                else if (validaExtremidade(posicaoNoTabuleiro) && (
-                        indice == posicaoNoTabuleiro + 7 ||
-                                indice == posicaoNoTabuleiro - 1 ||
-                                indice == posicaoNoTabuleiro - 9
-                )) {
-                    verificaPeca(posicao, possiveisMovimentos,poTabuleiro);
-                } else {
-                    verificaPeca(posicao, possiveisMovimentos,  poTabuleiro);
-                }
+                if (validaExtremidade((posicaoNoTabuleiro + 1))) {
+                    if (!(indice == posicaoNoTabuleiro - 7 ||
+                            indice == posicaoNoTabuleiro + 1 ||
+                            indice == posicaoNoTabuleiro + 9)
 
-            }
-
-        }
-
-        if (posicaoReiNao != null) {
-
-            Iterator<Posicao> iterator = possiveisMovimentos.iterator();
-
-            while (iterator.hasNext()) {
-                Posicao posicao = iterator.next();
-
-                for (Posicao posicaoRei : posicaoReiNao) {
-                    if (posicao.equals(posicaoRei)) {
-                        iterator.remove();
-                        break; // No need to continue checking after a match is found
+                    ) {
+                        verificaPeca(posicao, possiveisMovimentos , poTabuleiro, simular);
                     }
                 }
+                // Coluna A
+                else if (validaExtremidade(posicaoNoTabuleiro) ) {
+                    if(!(indice == posicaoNoTabuleiro + 7 ||
+                                    indice == posicaoNoTabuleiro - 1 ||
+                                    indice == posicaoNoTabuleiro - 9)
+                    ){
+                        verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular);
+                    }
+                } else {
+                    verificaPeca(posicao, possiveisMovimentos,  poTabuleiro, simular);
+                }
+
             }
+
         }
+
+//        if (posicaoReiNao != null) {
+//
+//            Iterator<Posicao> iterator = possiveisMovimentos.iterator();
+//
+//            while (iterator.hasNext()) {
+//                Posicao posicao = iterator.next();
+//
+//                for (Posicao posicaoRei : posicaoReiNao) {
+//                    if (posicao.equals(posicaoRei)) {
+//                        iterator.remove();
+//                        break; // No need to continue checking after a match is found
+//                    }
+//                }
+//            }
+//        }
 
 
         return possiveisMovimentos;

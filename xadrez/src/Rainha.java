@@ -14,9 +14,6 @@ public class Rainha extends Peca{
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
         for (int i = (validaExtremidade(posicaoTabuleiro) ? 64 : posicaoTabuleiro + 7); i <poTabuleiro.size(); i += 7) {
-
-            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular );
-
             if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular) || validaExtremidade(i)) {
                 break;
             }
@@ -24,20 +21,13 @@ public class Rainha extends Peca{
 
         for (int i = (validaExtremidade(posicaoTabuleiro+1) ? 7 : posicaoTabuleiro - 7); i > 7; i -= 7) {
 
-            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular);
-
             if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i+1)) {
                 break;
             }
         }
 
         for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 9); i <poTabuleiro.size(); i += 9) {
-
-            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro, simular);
-
-            if (poTabuleiro.get(i).getPeca() == null) {
-                possiveisMovimentos.add(poTabuleiro.get(i));
-            }
+            
 
             if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i+1)) {
                 break;
@@ -45,9 +35,6 @@ public class Rainha extends Peca{
         }
 
         for (int i = (validaExtremidade(posicaoTabuleiro) ? 9 : posicaoTabuleiro - 9); i > 9; i -= 9) {
-
-            this.verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular);
-
             if (verificaPeca(poTabuleiro.get(i), possiveisMovimentos,poTabuleiro,simular ) || validaExtremidade(i)) {
                 break;
             }
@@ -76,8 +63,6 @@ public class Rainha extends Peca{
 
         for (int i = (validaExtremidade(posicaoTabuleiro) ? -1 : posicaoTabuleiro - 1); i >= 0; i --) {
             Posicao posicao = poTabuleiro.get(i);
-
-            this.verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular);
 
             if (validaExtremidade(i)||
                     verificaPeca(posicao, possiveisMovimentos,poTabuleiro, simular)) {

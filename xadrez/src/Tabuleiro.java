@@ -8,14 +8,14 @@ public class Tabuleiro {
         for (int i = 0; i <64 ; i++) {
             posicoes.add(new Posicao());
             posicoes.get(i).setNumero(i);
-//            if (i>=8 && i<=15){
-//                posicoes.get(i).setPeca(new Peao("Preto",posicoes.get(i)));
-//
-//
-//            }if (i>=48 && i<=55){
-//                posicoes.get(i).setPeca(new Peao("Branco",posicoes.get(i)));
-//
-//            }
+            if (i>=8 && i<=15){
+                posicoes.get(i).setPeca(new Peao("Preto",posicoes.get(i)));
+
+
+            }if (i>=48 && i<=55){
+                posicoes.get(i).setPeca(new Peao("Branco",posicoes.get(i)));
+
+            }
             if(i ==0 || i ==7){
                 posicoes.get(i).setPeca(new Torre("Preto",posicoes.get(i)));
 
@@ -99,7 +99,7 @@ public class Tabuleiro {
     public static boolean verificarXeque(ArrayList<Posicao> poTabuleiro, Peca peca) {
         for (Posicao posicao : poTabuleiro) {
             if (posicao!=null && posicao.getPeca()!=null) {
-                if (posicao.getPeca().getCor()!= peca.getCor()) {
+                if (!posicao.getPeca().getCor().equals(peca.getCor())) {
                     for (Posicao pecaVerificar : posicao.getPeca().possiveisMovimentos(poTabuleiro,false )) {
                         if (pecaVerificar.getPeca() instanceof Rei) {
                             return true;

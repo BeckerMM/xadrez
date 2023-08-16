@@ -34,17 +34,6 @@ public abstract class Peca {
 
     public abstract ArrayList<Posicao> possiveisMovimentos(ArrayList<Posicao> poTabuleiro, boolean simular);
 
-
-    public void removerMovimentoDoRei(Posicao posicao,ArrayList<Posicao> poTabuleiro ,Jogador jogador, Jogador adversario){
-        ArrayList<Posicao> possiveisMovimentos = possiveisMovimentos(poTabuleiro,true );
-        for (Posicao i : possiveisMovimentos) {
-            if (i == posicao){
-                possiveisMovimentos.remove(posicao);
-            }
-        }
-
-    }
-
     public Posicao getPosicao() {
         return posicao;
     }
@@ -80,12 +69,12 @@ public abstract class Peca {
         return false;
     }
 
-    private boolean simularJogada (Posicao posicao, ArrayList<Posicao> possiveisMovimentos,ArrayList<Posicao> poTabuleiro){
+    public boolean simularJogada (Posicao posicao, ArrayList<Posicao> possiveisMovimentos,ArrayList<Posicao> poTabuleiro){
         Peca pecaAntiga = posicao.getPeca();
         Posicao antigaPosicao = this.posicao;
 
         this.mover( posicao,  possiveisMovimentos);
-        System.out.println(Tabuleiro.verificarXeque(poTabuleiro, this));
+
         if(Tabuleiro.verificarXeque(poTabuleiro, this)){
            this.mover(antigaPosicao, possiveisMovimentos);
             posicao.setPeca(pecaAntiga);
@@ -96,8 +85,18 @@ public abstract class Peca {
             return true;
         }
     }
-
-
+    public boolean pecaSalvaRei(ArrayList<Posicao> poTabuleiro){
+        System.out.println(this);
+        for (Posicao posicao : this.possiveisMovimentos( poTabuleiro,false)) {
+            if (this.simularJogada(posicao, this.possiveisMovimentos( poTabuleiro,false),poTabuleiro)){
+                System.out.println("foi");
+                return true;
+            }else{
+                return false;
+            }
+        }
+            return false;
+    }
 
     @Override
     public String toString() {

@@ -57,23 +57,6 @@ public class Rei extends Peca {
 
         }
 
-//        if (posicaoReiNao != null) {
-//
-//            Iterator<Posicao> iterator = possiveisMovimentos.iterator();
-//
-//            while (iterator.hasNext()) {
-//                Posicao posicao = iterator.next();
-//
-//                for (Posicao posicaoRei : posicaoReiNao) {
-//                    if (posicao.equals(posicaoRei)) {
-//                        iterator.remove();
-//                        break; // No need to continue checking after a match is found
-//                    }
-//                }
-//            }
-//        }
-
-
         return possiveisMovimentos;
     }
 

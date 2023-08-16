@@ -87,64 +87,69 @@ public class Executavel {
 
     private static boolean jogada(Jogador jogador, Jogador adversario, Tabuleiro tabuleiro) {
 
+        boolean xequeMate = verificarXequeMate(jogador, tabuleiro.getPosicoes());
+        if (!xequeMate) {
+            int escolhaPeca;
+            int escolhaPosicao;
 
-        int escolhaPeca;
-        int escolhaPosicao;
+            System.out.println("\n----- JOGADOR " + jogador.getNome() + "-----");
 
-        System.out.println("\n----- JOGADOR " + jogador.getNome() + "-----");
+            //Escolha da Peça
+            Peca peca;
+            System.out.println(Tabuleiro.verificarXeque(tabuleiro.getPosicoes(), adversario.getPecas().get(0)));
 
-        //Escolha da Peça
-        Peca peca;
-        System.out.println(Tabuleiro.verificarXeque(tabuleiro.getPosicoes(), adversario.getPecas().get(0)));
-
-        if (Tabuleiro.verificarXeque(tabuleiro.getPosicoes(), jogador.getPecas().get(0))) {
-            ArrayList<Peca> pecaSalvamRei = pecasPermitidasParaJogoEmXeque(jogador, tabuleiro.getPosicoes(), adversario.getCor());
-            System.out.println("Rei em perigo !!");
-            System.out.println("Escolha uma peça para tirar seu rei do perigo:");
-            System.out.println(pecaSalvamRei);
-            escolhaPeca = sc.nextInt();
-            peca =pecaSalvamRei.get(escolhaPeca);
-            System.out.println(peca);
-            while (peca.possiveisMovimentos(tabuleiro.getPosicoes(), true).size() <= 0) {
-                //Escolha da Peça
-                System.out.println("Escolha peça novamente \n" +pecaSalvamRei);
+            if (Tabuleiro.verificarXeque(tabuleiro.getPosicoes(), jogador.getPecas().get(0))) {
+                ArrayList<Peca> pecaSalvamRei = pecasPermitidasParaJogoEmXeque(jogador, tabuleiro.getPosicoes(), adversario.getCor());
+                System.out.println("Rei em perigo !!");
+                System.out.println("Escolha uma peça para tirar seu rei do perigo:");
+                System.out.println(pecaSalvamRei);
                 escolhaPeca = sc.nextInt();
                 peca = pecaSalvamRei.get(escolhaPeca);
                 System.out.println(peca);
-            }
-        } else {
-            System.out.println(jogador.getPecas());
-            escolhaPeca = sc.nextInt();
-            peca = jogador.getPecas().get(escolhaPeca);
-            System.out.println(peca);
-            while (peca.possiveisMovimentos(tabuleiro.getPosicoes(), true).size() <= 0) {
-                //Escolha da Peça
-                System.out.println("Escolha peça novamente \n" + jogador.getPecas());
+                while (peca.possiveisMovimentos(tabuleiro.getPosicoes(), true).size() <= 0) {
+                    //Escolha da Peça
+                    System.out.println("Escolha peça novamente \n" + pecaSalvamRei);
+                    escolhaPeca = sc.nextInt();
+                    peca = pecaSalvamRei.get(escolhaPeca);
+                    System.out.println(peca);
+                }
+            } else {
+                System.out.println(jogador.getPecas());
                 escolhaPeca = sc.nextInt();
                 peca = jogador.getPecas().get(escolhaPeca);
                 System.out.println(peca);
+                while (peca.possiveisMovimentos(tabuleiro.getPosicoes(), true).size() <= 0) {
+                    //Escolha da Peça
+                    System.out.println("Escolha peça novamente \n" + jogador.getPecas());
+                    escolhaPeca = sc.nextInt();
+                    peca = jogador.getPecas().get(escolhaPeca);
+                    System.out.println(peca);
+                }
             }
+            ArrayList<Posicao> posicoes;
+            posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes(), true);
+            System.out.println(posicoes);
+            escolhaPosicao = sc.nextInt();
+            Posicao posicao = percorrerPosicoesDojogador(escolhaPosicao, posicoes);
+            if (posicao == null) {
+                do {
+                    System.out.println("\nPosição invalida!! escolha outra:");
+                    escolhaPosicao = sc.nextInt();
+                    posicao = percorrerPosicoesDojogador(escolhaPosicao, posicoes);
+                } while (posicao == null);
+
+            }
+
+            System.out.println("EscolhaPosicao: " + posicao);
+
+            //Movimentação da peça escolhida para a posição desejada
+            jogador.moverPeca(peca, posicao, tabuleiro, jogador, adversario);
+            System.out.println(tabuleiro);
+        }else {
+            System.out.println("Jogador "+ adversario.getNome()+ " venceu!! ");
         }
-        ArrayList<Posicao> posicoes;
-        posicoes = peca.possiveisMovimentos(tabuleiro.getPosicoes(), true);
-        System.out.println(posicoes);
-        escolhaPosicao = sc.nextInt();
-        Posicao posicao = percorrerPosicoesDojogador(escolhaPosicao, posicoes);
-        if (posicao == null) {
-            do {
-                System.out.println("\nPosição invalida!! escolha outra:");
-                escolhaPosicao = sc.nextInt();
-                posicao = percorrerPosicoesDojogador(escolhaPosicao, posicoes);
-            } while (posicao == null);
-
-        }
-
-        System.out.println("EscolhaPosicao: " + posicao);
-
-        //Movimentação da peça escolhida para a posição desejada
-        jogador.moverPeca(peca, posicao, tabuleiro, jogador, adversario);
-        System.out.println(tabuleiro);
-        return validarVitoria(adversario);
+        System.out.println("xequeMate " + xequeMate);
+        return xequeMate;
     }
 
     private static Posicao percorrerPosicoesDojogador(int numeroDaPosicao, ArrayList<Posicao> posicoes) {
@@ -197,17 +202,6 @@ public class Executavel {
         new Jogador(nome, senha);
     }
 
-
-    private static boolean validarVitoria(Jogador adversario) {
-        for (Peca peca : adversario.getPecas()) {
-            if (peca instanceof Rei) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
     public static ArrayList<Peca> pecasPermitidasParaJogoEmXeque(Jogador jogador, ArrayList<Posicao> posicoes, String corAdversario) {
         ArrayList<Peca> pecasPossui = new ArrayList<>();
         for (Peca peca : jogador.getPecas()) {
@@ -221,5 +215,17 @@ public class Executavel {
         return pecasPossui;
     }
 
+    private static boolean verificarXequeMate(Jogador jogador ,ArrayList<Posicao> poTabuleiro){
+        int verificarMate=0;
+        for (Peca peca: jogador.getPecas()) {
+            if(peca.possiveisMovimentos(poTabuleiro,true).size()>0){
+                verificarMate++;
+
+            }
+
+        }
+
+        return verificarMate == 0;
+    }
 
 }
